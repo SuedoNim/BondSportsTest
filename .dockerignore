@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+Makefile
+docker-compose.yml
+dist
+coverage
+tests
+.DS_Store
+data

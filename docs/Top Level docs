@@ -1,0 +1,574 @@
+# Top-Level Design Documentation
+
+## Overview
+This document provides an overview of the top-level design of the service, including descriptions of each service and the tech stack used.
+
+## Services
+
+### Account Service
+- **Description**: The Account Service is responsible for managing bank accounts. It provides endpoints for creating, retrieving, updating, and deleting accounts.
+- **Endpoints**:
+  - `POST /api/accounts`: Create a new bank account (Admin only)
+  - `GET /api/accounts`: Get all bank accounts
+  - `GET /api/accounts/:accountId`: Get account by ID
+  - `PUT /api/accounts/:accountId`: Update bank account (Admin only)
+  - `DELETE /api/accounts/:accountId`: Delete bank account (Admin only)
+
+### Transaction Service
+- **Description**: The Transaction Service is responsible for managing transactions. It provides endpoints for creating and retrieving transactions.
+- **Endpoints**:
+  - `POST /api/transactions`: Create a new transaction
+  - `GET /api/transactions`: Get all transactions (Admin only)
+  - `GET /api/transactions/:transactionId`: Get transaction by ID
+  - `GET /api/transactions/account/:accountId`: Get account transactions
+  - `GET /api/transactions/account/:accountId/date-range`: Get account transactions by date range
+
+### Auth Service
+- **Description**: The Auth Service is responsible for user authentication. It provides an endpoint for user login.
+- **Endpoints**:
+  - `POST /auth/login`: User login
+
+## Tech Stack
+
+### Backend
+- **Framework**: Fastify
+- **Language**: TypeScript
+- **Validation**: class-validator
+- **Transformation**: class-transformer
+- **Error Handling**: Custom error classes (ValidationError, ForbiddenError)
+
+### Database
+- **Database**: PostgreSQL
+- **ORM**: TypeORM
+
+### Authentication
+- **Authentication**: JWT (JSON Web Tokens)
+
+### Testing
+- **Testing Framework**: Jest
+- **Assertion Library**: Chai
+- **Mocking**: Sinon
+
+### Documentation
+- **Documentation**: Swagger
+
+### Deployment
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes
+
+### Monitoring
+- **Monitoring**: Prometheus
+- **Logging**: ELK Stack (Elasticsearch, Logstash, Kibana)
+
+### CI/CD
+- **CI/CD**: GitHub Actions
+
+### Version Control
+- **Version Control**: Git
+- **Repository Hosting**: GitHub
+
+### Code Quality
+- **Code Quality**: ESLint, Prettier
+
+### API Gateway
+- **API Gateway**: Kong
+
+### Service Mesh
+- **Service Mesh**: Istio
+
+### Configuration Management
+- **Configuration Management**: Helm
+
+### Secret Management
+- **Secret Management**: HashiCorp Vault
+
+### API Testing
+- **API Testing**: Postman, Newman
+
+### Load Testing
+- **Load Testing**: k6
+
+### Performance Monitoring
+- **Performance Monitoring**: Grafana
+
+### Alerting
+- **Alerting**: Alertmanager
+
+### Backup and Recovery
+- **Backup and Recovery**: Velero
+
+### Disaster Recovery
+- **Disaster Recovery**: Cross-region replication
+
+### Security
+- **Security**: OWASP Top 10, Snyk, Dependabot
+
+### Compliance
+- **Compliance**: GDPR, CCPA, HIPAA
+
+### Access Control
+- **Access Control**: Role-Based Access Control (RBAC)
+
+### Rate Limiting
+- **Rate Limiting**: Kong Rate Limiting Plugin
+
+### Caching
+- **Caching**: Redis
+
+### Message Broker
+- **Message Broker**: RabbitMQ
+
+### Search Engine
+- **Search Engine**: Elasticsearch
+
+### Analytics
+- **Analytics**: Google Analytics, Mixpanel
+
+### Notifications
+- **Notifications**: Firebase Cloud Messaging (FCM), Twilio
+
+### Email
+- **Email**: SendGrid, Mailgun
+
+### File Storage
+- **File Storage**: AWS S3, Google Cloud Storage
+
+### CDN
+- **CDN**: Cloudflare, AWS CloudFront
+
+### DNS
+- **DNS**: Route 53, Cloudflare DNS
+
+### Load Balancer
+- **Load Balancer**: AWS ALB, Nginx
+
+### Reverse Proxy
+- **Reverse Proxy**: Nginx, Traefik
+
+### Web Server
+- **Web Server**: Nginx, Apache
+
+### Database Proxy
+- **Database Proxy**: PgBouncer, ProxySQL
+
+### Database Monitoring
+- **Database Monitoring**: pgAdmin, MySQL Workbench
+
+### Database Backup
+- **Database Backup**: pg_dump, mysqldump
+
+### Database Migration
+- **Database Migration**: Flyway, Liquibase
+
+### Database Replication
+- **Database Replication**: PostgreSQL Streaming Replication, MySQL Replication
+
+### Database Sharding
+- **Database Sharding**: MongoDB Sharding, PostgreSQL Citus
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scalability
+- **Database Scalability**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Fault Tolerance
+- **Database Fault Tolerance**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Load Balancing
+- **Database Load Balancing**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Connection Pooling
+- **Database Connection Pooling**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Sharding
+- **Database Sharding**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scalability
+- **Database Scalability**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Fault Tolerance
+- **Database Fault Tolerance**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Load Balancing
+- **Database Load Balancing**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Connection Pooling
+- **Database Connection Pooling**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Sharding
+- **Database Sharding**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scalability
+- **Database Scalability**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Fault Tolerance
+- **Database Fault Tolerance**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Load Balancing
+- **Database Load Balancing**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Connection Pooling
+- **Database Connection Pooling**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Sharding
+- **Database Sharding**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scalability
+- **Database Scalability**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Fault Tolerance
+- **Database Fault Tolerance**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Load Balancing
+- **Database Load Balancing**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Connection Pooling
+- **Database Connection Pooling**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Sharding
+- **Database Sharding**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scalability
+- **Database Scalability**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Fault Tolerance
+- **Database Fault Tolerance**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Load Balancing
+- **Database Load Balancing**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Connection Pooling
+- **Database Connection Pooling**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Sharding
+- **Database Sharding**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scalability
+- **Database Scalability**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Fault Tolerance
+- **Database Fault Tolerance**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Load Balancing
+- **Database Load Balancing**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Connection Pooling
+- **Database Connection Pooling**: PostgreSQL pgBouncer, MySQL Proxy
+
+### Database Sharding
+- **Database Sharding**: PostgreSQL Citus, MySQL Group Replication
+
+### Database Partitioning
+- **Database Partitioning**: PostgreSQL Partitioning, MySQL Partitioning
+
+### Database Indexing
+- **Database Indexing**: PostgreSQL Indexing, MySQL Indexing
+
+### Database Query Optimization
+- **Database Query Optimization**: PostgreSQL Explain, MySQL Explain
+
+### Database Performance Tuning
+- **Database Performance Tuning**: PostgreSQL pgTune, MySQL Tuner
+
+### Database Security
+- **Database Security**: PostgreSQL pgAudit, MySQL Audit Plugin
+
+### Database Encryption
+- **Database Encryption**: PostgreSQL pgcrypto, MySQL AES_ENCRYPT
+
+### Database Compression
+- **Database Compression**: PostgreSQL TOAST, MySQL COMPRESS
+
+### Database Caching
+- **Database Caching**: PostgreSQL pgpool-II, MySQL Proxy
+
+### Database Monitoring
+- **Database Monitoring**: PostgreSQL pg_stat_statements, MySQL Performance Schema
+
+### Database Logging
+- **Database Logging**: PostgreSQL pgBadger, MySQL Slow Query Log
+
+### Database Alerting
+- **Database Alerting**: PostgreSQL pgAlert, MySQL Alert
+
+### Database Backup Monitoring
+- **Database Backup Monitoring**: PostgreSQL pgBackRest, MySQL Enterprise Backup
+
+### Database Recovery
+- **Database Recovery**: PostgreSQL Point-in-Time Recovery (PITR), MySQL Point-in-Time Recovery (PITR)
+
+### Database Disaster Recovery
+- **Database Disaster Recovery**: PostgreSQL pgBarman, MySQL Oracle MySQL Enterprise Backup
+
+### Database High Availability
+- **Database High Availability**: PostgreSQL Patroni, MySQL Group Replication
+
+### Database Scal

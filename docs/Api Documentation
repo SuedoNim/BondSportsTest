@@ -1,0 +1,177 @@
+# API Documentation
+
+## Account Routes
+
+### Create Account (Admin only)
+- **Endpoint**: `POST /api/accounts`
+- **Description**: Create a new bank account (Admin only)
+- **Tags**: Accounts
+- **Security**: Bearer Auth
+- **Request Body**:
+  - `personId`: number
+  - `balance`: number (minimum: 0)
+  - `daylightWithdrawelLimit`: number (minimum: 0)
+  - `activeFlag`: boolean
+  - `accountType`: number
+- **Response**:
+  - `201`: Account created
+    - `accountId`: number
+    - `personId`: number
+    - `balance`: number
+    - `daylightWithdrawelLimit`: number
+    - `activeFlag`: boolean
+    - `accountType`: number
+    - `createDate`: string (date-time)
+- **Checks**:
+  - Authentication
+  - Role (Admin only)
+- **Validation**:
+  - Validates request data using `CreateAccountDto`
+
+### Get All Accounts
+- **Endpoint**: `GET /api/accounts`
+- **Description**: Get all bank accounts
+- **Tags**: Accounts
+- **Security**: Bearer Auth
+- **Query Parameters**:
+  - `page`: number (default: 1)
+  - `limit`: number (default: 10)
+- **Response**:
+  - `200`: List of accounts
+    - Array of objects with `accountId`, `personId`, and `balance`
+- **Checks**:
+  - Authentication
+
+### Get Account by ID
+- **Endpoint**: `GET /api/accounts/:accountId`
+- **Description**: Get account by ID
+- **Tags**: Accounts
+- **Security**: Bearer Auth
+- **Parameters**:
+  - `accountId`: string
+- **Response**:
+  - `200`: Account details
+  - `404`: Account not found
+- **Checks**:
+  - Authentication
+
+### Update Account
+- **Endpoint**: `PUT /api/accounts/:accountId`
+- **Description**: Update bank account (Admin only)
+- **Tags**: Accounts
+- **Security**: Bearer Auth
+- **Parameters**:
+  - `accountId`: string
+- **Request Body**:
+  - `balance`: number (minimum: 0)
+  - `daylightWithdrawelLimit`: number (minimum: 0)
+  - `activeFlag`: boolean
+  - `accountType`: number
+- **Response**:
+  - `200`: Account updated
+- **Checks**:
+  - Authentication
+  - Role (Admin only)
+- **Validation**:
+  - Validates request data using `UpdateAccountDto`
+
+### Delete Account
+- **Endpoint**: `DELETE /api/accounts/:accountId`
+- **Description**: Delete bank account (Admin only)
+- **Tags**: Accounts
+- **Security**: Bearer Auth
+- **Parameters**:
+  - `accountId`: string
+- **Response**:
+  - `204`: Account deleted
+- **Checks**:
+  - Authentication
+  - Role (Admin only)
+
+## Transaction Routes
+
+### Create Transaction
+- **Endpoint**: `POST /api/transactions`
+- **Description**: Create a new transaction, for either depositing or withdrawing to and from balance
+- **Tags**: Transactions
+- **Security**: Bearer Auth
+- **Request Body**:
+  - `accountId`: number
+  - `value`: number
+- **Response**:
+  - `201`: Transaction created
+- **Checks**:
+  - Authentication
+- **Validation**:
+  - Validates request data using `CreateTransactionDto`
+
+### Get All Transactions (Admin only)
+- **Endpoint**: `GET /api/transactions`
+- **Description**: Get all transactions (Admin only)
+- **Tags**: Transactions
+- **Security**: Bearer Auth
+- **Response**:
+  - `200`: List of transactions
+- **Checks**:
+  - Authentication
+  - Role (Admin only)
+
+### Get Transaction by ID
+- **Endpoint**: `GET /api/transactions/:transactionId`
+- **Description**: Get transaction by ID
+- **Tags**: Transactions
+- **Security**: Bearer Auth
+- **Parameters**:
+  - `transactionId`: string
+- **Response**:
+  - `200`: Transaction details
+- **Checks**:
+  - Authentication
+
+### Get Account Transactions
+- **Endpoint**: `GET /api/transactions/account/:accountId`
+- **Description**: Get account transactions
+- **Tags**: Transactions
+- **Security**: Bearer Auth
+- **Parameters**:
+  - `accountId`: string
+- **Response**:
+  - `200`: List of account transactions
+- **Checks**:
+  - Authentication
+
+### Get Account Transactions by Date Range
+- **Endpoint**: `GET /api/transactions/account/:accountId/date-range`
+- **Description**: Get account transactions by date range
+- **Tags**: Transactions
+- **Security**: Bearer Auth
+- **Parameters**:
+  - `accountId`: string
+  - `startDate`: string (date-time)
+  - `endDate`: string (date-time)
+- **Response**:
+  - `200`: List of account transactions within the specified date range
+- **Checks**:
+  - Authentication
+
+## Auth Routes
+
+### Login
+- **Endpoint**: `POST /auth/login`
+- **Description**: User login
+- **Tags**: Authentication
+- **Request Body**:
+  - `email`: string (email format)
+  - `password`: string (minimum length: 6)
+- **Response**:
+  - `200`: Login successful
+    - `token`: string
+    - `payload`: object
+      - `personId`: number
+      - `email`: string
+      - `roleId`: number
+  - `400`: Invalid credentials
+    - `error`: string
+    - `message`: string
+- **Validation**:
+  - Validates request data using `LoginDto`

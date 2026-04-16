@@ -1,0 +1,115 @@
+# Testing Documentation
+
+## Account Routes
+
+### Create Account (Admin only)
+- **Test Case**: Create a new bank account
+- **Description**: Ensure that a new bank account can be created by an admin user
+- **Steps**:
+  1. Authenticate as an admin user
+  2. Send a POST request to `/api/accounts` with the required fields
+  3. Verify that the response status code is `201`
+  4. Verify that the response body contains the created account details
+- **Expected Result**: The account is created successfully
+
+### Get All Accounts
+- **Test Case**: Get all bank accounts
+- **Description**: Ensure that all bank accounts can be retrieved
+- **Steps**:
+  1. Authenticate as a user
+  2. Send a GET request to `/api/accounts`
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains a list of accounts
+- **Expected Result**: All accounts are retrieved successfully
+
+### Get Account by ID
+- **Test Case**: Get account by ID
+- **Description**: Ensure that a specific account can be retrieved by its ID
+- **Steps**:
+  1. Authenticate as a user
+  2. Send a GET request to `/api/accounts/:accountId` with a valid account ID
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains the account details
+- **Expected Result**: The account is retrieved successfully
+
+### Update Account
+- **Test Case**: Update bank account
+- **Description**: Ensure that a bank account can be updated by an admin user
+- **Steps**:
+  1. Authenticate as an admin user
+  2. Send a PUT request to `/api/accounts/:accountId` with the updated fields
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains the updated account details
+- **Expected Result**: The account is updated successfully
+
+### Delete Account
+- **Test Case**: Delete bank account
+- **Description**: Ensure that a bank account can be deleted by an admin user
+- **Steps**:
+  1. Authenticate as an admin user
+  2. Send a DELETE request to `/api/accounts/:accountId` with a valid account ID
+  3. Verify that the response status code is `204`
+- **Expected Result**: The account is deleted successfully
+
+## Transaction Routes
+
+### Create Transaction
+- **Test Case**: Create a new transaction
+- **Description**: Ensure that a new transaction can be created
+- **Steps**:
+  1. Authenticate as a user
+  2. Send a POST request to `/api/transactions` with the required fields
+  3. Verify that the response status code is `201`
+  4. Verify that the response body contains the created transaction details
+- **Expected Result**: The transaction is created successfully
+
+### Get All Transactions (Admin only)
+- **Test Case**: Get all transactions
+- **Description**: Ensure that all transactions can be retrieved by an admin user
+- **Steps**:
+  1. Authenticate as an admin user
+  2. Send a GET request to `/api/transactions`
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains a list of transactions
+- **Expected Result**: All transactions are retrieved successfully
+
+### Get Transaction by ID
+- **Test Case**: Get transaction by ID
+- **Description**: Ensure that a specific transaction can be retrieved by its ID
+- **Steps**:
+  1. Authenticate as a user
+  2. Send a GET request to `/api/transactions/:transactionId` with a valid transaction ID
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains the transaction details
+- **Expected Result**: The transaction is retrieved successfully
+
+### Get Account Transactions
+- **Test Case**: Get account transactions
+- **Description**: Ensure that transactions for a specific account can be retrieved
+- **Steps**:
+  1. Authenticate as a user
+  2. Send a GET request to `/api/transactions/account/:accountId` with a valid account ID
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains a list of transactions for the account
+- **Expected Result**: The account transactions are retrieved successfully
+
+### Get Account Transactions by Date Range
+- **Test Case**: Get account transactions by date range
+- **Description**: Ensure that transactions for a specific account within a date range can be retrieved
+- **Steps**:
+  1. Authenticate as a user
+  2. Send a GET request to `/api/transactions/account/:accountId/date-range` with a valid account ID and date range
+  3. Verify that the response status code is `200`
+  4. Verify that the response body contains a list of transactions for the account within the specified date range
+- **Expected Result**: The account transactions within the date range are retrieved successfully
+
+## Auth Routes
+
+### Login
+- **Test Case**: User login
+- **Description**: Ensure that a user can log in successfully
+- **Steps**:
+  1. Send a POST request to `/auth/login` with valid credentials
+  2. Verify that the response status code is `200`
+  3. Verify that the response body contains a token and payload with user details
+- **Expected Result**: The user is logged in successfully

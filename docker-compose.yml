@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  banking-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: banking-api
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      APP_PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-in-production}
+      JWT_EXPIRATION: 24h
+      DATABASE_PATH: /app/data/banking.db
+      LOG_LEVEL: info
+      SWAGGER_ENABLED: "true"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    networks:
+      - banking-network
+
+networks:
+  banking-network:
+    driver: bridge
